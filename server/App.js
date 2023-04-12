@@ -13,18 +13,22 @@ import doctorRouter from './router/doctor.js'
 const PORT = process.env.PORT;
 const app = express();
 
+//database
 database();
 
 //middlewares
-app.use(cors({origin:true, credentials:true,origin:"http://localhost:3000"}));
+app.use(cors({ origin: true, credentials: true, origin: "http://localhost:3000" }));
 app.use(express.json({ limit: '50mb' }));
 app.use(morgan('combined'));
 app.use(cookieParser())
+app.use(express.urlencoded({
+    extended: true
+}));
 
-app.use('/api/user',userRouter);
-app.use('/api/admin',adminRouter);
-app.use('/api/doctor',doctorRouter);
+app.use('/api/user', userRouter);
+app.use('/api/admin', adminRouter);
+app.use('/api/doctor', doctorRouter);
 
 
 
-app.listen(PORT,()=>console.log(`server started on PORT ${PORT}`));
+app.listen(PORT, () => console.log(`server started on PORT ${PORT}`));

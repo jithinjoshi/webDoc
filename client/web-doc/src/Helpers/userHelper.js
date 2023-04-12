@@ -113,6 +113,23 @@ export const getAllDoctors = async () => {
     }
 }
 
+//available doctor schedules
+
+export const getAllSchedules = async (id)=>{
+    try {
+        const schedules = await axios.get(`/api/user//availableSlots/${id}`);
+        if(schedules){
+            return schedules;
+        }else{
+            return "can't get the data"
+        }
+        
+    } catch (error) {
+        return error;
+        
+    }
+}
+
 
 //signout user
 export const signoutUser = async () => {

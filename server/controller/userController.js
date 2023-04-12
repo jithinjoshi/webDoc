@@ -4,6 +4,7 @@ import admin from '../config/firebase.config.js';
 
 import User from '../Model/User.js';
 import Doctor from '../Model/Doctor.js';
+import { Schedule } from '../Model/Schedules.js';
 
 
 
@@ -228,12 +229,29 @@ export const getUser = async (req, res,) => {
 //get all doctors
 export const getAllDoctors = async (req, res) => {
     try {
-        let doctors = await Doctor.find({});
+        let doctors = await Doctor.find({},'-password');
         res.status(200).send(doctors);
 
     } catch (error) {
         res.status(500).json({ err: "can't get all doctors" })
 
+    }
+}
+
+//get a doctor availability
+export const getDoctorAvailability = async(req,res)=>{
+    try {
+        const {id} = req.params;
+        const schedules = await Schedule.find({doctorId:id});
+        if(schedules){
+            return res.status(200).send(schedules);
+        }else{
+            res.status(500).json({err:"schedules not found"})
+        }
+        
+    } catch (error) {
+        res.status(500).json({err:"can't get doctor availability"})
+        
     }
 }
 

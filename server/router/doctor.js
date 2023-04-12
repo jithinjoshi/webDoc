@@ -5,7 +5,9 @@ import { Auth } from '../Auth/middleware.js';
 const router = express.Router();
 
 router.route('/signin').post(controller.login);
-router.route('/profile').get(Auth, controller.profile);
-router.route('/profile/:id').put(controller.edit);
+router.route('/profile/:id').get(controller.profile);
+router.route('/edit/:id').put(controller.edit);
+router.route('/schedule/:id').post(controller.schedule);
+router.route('/scheduledTime/:id').get(controller.scheduledTime);
 
 export default router

@@ -8,7 +8,15 @@ import ListDoctors from "../pages/admin/ListDoctors"
 import ListUsers from "../pages/admin/ListUsers"
 import DoctorSignin from "../pages/Doctor/DoctorSignin"
 import DoctorList from "../pages/User/DoctorList"
-import DoctorProfile from "../pages/Doctor/DoctorProfile"
+import DoctorsEdit from "../pages/Doctor/DoctorsEdit"
+import TimeSlot from "../Components/User/TimeSlot"
+import DashBoard from "../Components/Admin/DashBoard"
+import ScheduleSlot from "../Components/Doctor/ScheduleSlot"
+import LandingPage from "../pages/Doctor/LandingPage"
+import DoctorsProfile from "../pages/Doctor/DoctorsProfile"
+import DoctorSchedulings from "../pages/Doctor/DoctorSchedulings"
+import Schedules from "../Components/User/Schedules"
+import DoctorSchedules from "../pages/User/DoctorSchedules"
 
 export const router = createBrowserRouter([
     {
@@ -27,6 +35,14 @@ export const router = createBrowserRouter([
       path:'/doctors',
       element:<DoctorList/>
     },
+    {
+      path:'/schedules/:id',
+      element:<DoctorSchedules/>
+    },
+    // {
+    //   path:'/appointment',
+    //   element:<TimeSlot/>
+    // },
     //admin
     {
       path:'/admin/signin',
@@ -44,6 +60,10 @@ export const router = createBrowserRouter([
       path:'/admin/getAllUsers',
       element:<ListUsers/>
     },
+    {
+      path:'/admin/dashboard',
+      element:<DashBoard/>
+    },
   
     //doctor
     {
@@ -51,8 +71,24 @@ export const router = createBrowserRouter([
       element:<DoctorSignin/>
     },
     {
-      path:'/doctor/profile',
-      element:<DoctorProfile/>
+      path:'/doctor',
+      element:<LandingPage/>
+    },
+    {
+      path:'/doctor/profile/:id',
+      element:<DoctorsProfile/>
+    },
+    {
+      path:'/doctor/edit/:id',
+      element:<DoctorsEdit/>
+    },
+    {
+      path:'/doctor/schedule',
+      element:<ScheduleSlot/>
+    },
+    {
+      path:'/doctor/schedulings/:id',
+      element:<DoctorSchedulings/>
     }
   
   ])

@@ -12,6 +12,8 @@ router.route('/login').post(controller.login);
 router.route("/user").get(Auth,controller.getUser);
 router.route("/refresh").get(refreshToken,Auth,controller.getUser);
 router.route('/doctors').get(controller.getAllDoctors);
+router.route('/availableSlots/:id').get(controller.getDoctorAvailability);
 router.route('/signout').post(Auth,controller.signoutUser);
 
-export default router;
+
+export default router; 

@@ -3,6 +3,8 @@ import { useFormik } from 'formik'
 import { Link, useNavigate } from 'react-router-dom'
 import toast, { Toaster } from 'react-hot-toast'
 import { signinDoctor } from '../../Helpers/doctorHelper'
+import { useDispatch } from 'react-redux'
+import { login } from '../../Redux/userSlice'
 
 const validate = values => {
     const errors = {};
@@ -25,6 +27,7 @@ const validate = values => {
 }
 
 const DoctorSignin = () => {
+    const dispatch = useDispatch();
     const history = useNavigate();
     const formik = useFormik({
         initialValues: {
@@ -44,8 +47,14 @@ const DoctorSignin = () => {
 
             signin.then((user) => {
                 if (user) {
-                    history("/home")
-
+                    localStorage.setItem('doctorId',user.data.userId)
+                    dispatch(
+                        login({
+                            userId: user.data.userId,
+                            loggedIn: true
+                        })
+                    );
+                    history("/home");
                 }
             }).catch((err) => {
                 console.log("login failure");

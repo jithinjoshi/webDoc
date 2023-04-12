@@ -40,6 +40,9 @@ const doctorSchema = new mongoose.Schema({
     image: {
         type: Object,
         required: [true, "please add the image"]
+    },
+    about: {
+        type:String
     }
 });
 
